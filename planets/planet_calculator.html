@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Planet Calculator</title>
+    <meta name="viewport" content="width=device-width">
+    <style>
+        .planet {display:table-row;}
+        .name, .au, .space, .result, .diameter
+        {
+            padding-left:0.5em;
+            display:table-cell;
+            text-align:right;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        /** Define an object for storing info on a planent */
+        class Planet
+        {
+            constructor(name, distance, color, diameter)
+            {
+                this.name = String(name);
+                this.distance = Number(distance); //in AU
+                this.color = String(color);
+                this.diameter = Number(diameter); //in Mega Meters
+            }
+            /* 30/100 = AU/x ; x = (100*AU)/30 */
+            scale(max_size, farthest){return (max_size*this.distance)/farthest;}
+            toString(){return this.name + " at " + this.distance + " AU";}
+        }
+        
+        /** create the solar system, a list of planet objects */
+        let planets = [
+            new Planet("Mercury", 0.39, "brown", 4.878)
+            //, new Planet("Sun", -1000, "yellow", 1391)
+            , new Planet("Venus", 0.723, "pink", 12.104)
+            , new Planet("Earth", 1.0, "blue", 12.756)
+            , new Planet("Mars", 1.524, "red", 6.794)
+            , new Planet("Jupiter", 5.203, "orange", 142.984)
+            , new Planet("Saturn", 9.539, "yellow", 120.536)
+            , new Planet("Uranus", 19.18, "lightblue", 51.118)
+            , new Planet("Neptune", 39.53, "blue", 49.532)
+            //, new Planet("Pluto", 49.305, "gray", 2.370)
+        ];
+        
+        /** Round a number to two decimal points, 3.14592 == 3.15 */
+        function round(num){return Math.round(100*num)/100;}
+        
+        function planet_line_html(name, au, diameter, feet)
+        {
+            var div = $("<div class='planet'></div>");
+            var lab = $("<label class='name'>" + name + " </label>");
+            var span_au = $("<span class='au' id="+name+"_au>" + au +
+                "</span>");
+            var span_diameter = $("<span class='diameter' id=" + name +
+                "_diameter>" +diameter + "</span>");
+            var span_space = $("<span class='space'>:</span>");
+            var span_feet = $("<span class='result' id="+name+"_feet>" + feet +
+                "</span>");
+            
+            div.append(lab);
+            div.append(span_au);
+            div.append(span_diameter);
+            div.append(span_space);
+            div.append(span_feet);
+            return div;
+        }
+        
+        function create_planet_line(name, au, diameter)
+        {
+            return planet_line_html(name,
+                round(au) + " AU",
+                round(diameter) + "Mm",
+                "")
+        }
+        
+        /** Create the HTML needed to display one text line for a planent */
+        /*function create_planet_line(name, au, diameter)
+        {
+            var div = $("<div class='planet'></div>");
+            var lab = $("<label class='name'>" + name + " </label>");
+            var span_au = $("<span class='au' id="+name+"_au>" + round(au) +
+              " AU</span>");
+            var span_diameter = $("<span class='diameter' id=" + name +
+              "_diameter>" + round(diameter) + " Mm</span>");
+            var span_space = $("<span class='space'>:</span>");
+            var span_feet = $("<span class='result' id="+name+"_feet></span>");
+            
+            div.append(lab);
+            div.append(span_au);
+            div.append(span_diameter);
+            div.append(span_space);
+            div.append(span_feet);
+            return div;
+        }*/
+        
+        /** calculate a new form and draw the graph out */
+        function calculatate()
+        {
+            let max = $("#max_feet").val();
+            var pview = $("#planet_view")[0];
+            var ctx = pview.getContext('2d');
+
+            //fill in background
+            ctx.fillStyle="black";
+            ctx.fillRect(0,0,pview.width, pview.height);
+            
+
+            //draw sun
+            ctx.beginPath();
+            ctx.lineWidth = 6
+            ctx.moveTo(3, 0);
+            ctx.strokeStyle = "yellow"
+            ctx.lineTo(3, pview.height);
+            ctx.stroke();
+            ctx.lineWidth = 1
+            
+            //set text settings
+            ctx.font = "12px Helvetica";
+            ctx.fillStyle = "red";
+            
+            //draw y axis label sideways
+            ctx.save();
+            ctx.translate(16, 5)
+            ctx.rotate(Math.PI/2);
+            ctx.fillText("y=Mm", 5, 5);
+            ctx.restore();
+
+            //draw x access label
+            ctx.fillText("x=AU", 10, pview.height-5);
+            
+            //draw each planent
+            for (item in planets)
+            {
+                let current_planet = planets[item];
+                let farthest = planets[planets.length-1].distance
+                let distance = current_planet.scale(max, farthest);
+                
+                //write new distance to table
+                $("#" + current_planet.name + "_feet").text(round(distance) +
+                  " feet")
+                
+                //get x,y, and radius
+                let x = Math.max(1,current_planet.scale(pview.width, farthest));
+                let y = pview.height/2;
+                let r = Math.max(1,current_planet.diameter/4.5);
+
+                ctx.fillStyle = current_planet.color;
+                ctx.beginPath();
+                ctx.arc(x, y, r, 0, 2*Math.PI);
+                ctx.fill();
+            }
+        }
+        
+        /** load the form */
+        function load_form()
+        {
+            $("#go").click(calculatate);
+            $("#max_feet").click(calculatate);
+            
+            header = planet_line_html("Planet", "Solar Distance", "Diameter",
+                "Local Distance")
+            $("#details").append( header );
+            for (item in planets)
+            {
+                let p = planets[item];
+                row = create_planet_line(p.name,p.distance, p.diameter)
+                $("#details").append( row );
+            }
+            calculatate()
+        }
+        
+        // ask jquery to load the form when the page is done initializing
+        $(document).ready(load_form);
+    </script>
+</head>
+<body>
+<div id="main_form">
+    <div>
+        <input type="number" id="max_feet" value="100">feet
+        <button id="go">Go</button>
+    </div>
+    <canvas id="planet_view" width="800" height="128"></canvas>
+    <div id="details"></div>
+</div>
+</body>
+</html>
