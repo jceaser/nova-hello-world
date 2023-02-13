@@ -67,4 +67,4 @@ Loops are very powerfull but to really show them off we need to learn about arra
 
 ---
 * [previous](04-if.md)
-* [next]()
+* [next](06-arrays.md)

@@ -2,18 +2,19 @@
 
 Before we go to far it might help to explain all the parts of the HTML file from the previous page. On that page we loaded the following into a text editor and a web browser:
 
-    1. <!DOCTYPE html>
-    2. <html>
-    3.    <head>
-    4.        <title>Page Title</title>
-    5.        <script>
-    6.            alert("Hello World")
-    7.        </script>
-    8.    </head>
-    9.    <body>
-    10.        Web page content here
-    11.    </body>
-    12.</html>
+    1. <!-- This is an HTML Comment, it is ignored by browsers -->
+    2. <!DOCTYPE html>                      <!-- Says the document is HTML 5 -->
+    3. <html>                                  <!-- Starts the HTML document -->
+    4.    <head>                           <!-- Starts the non-display stuff -->
+    5.        <title>Page Title</title>    <!-- Page Title, shows in browser -->
+    6.        <script>                    <!-- Starts the JavaScript section -->
+    7.            alert("Hello World")
+    8.        </script>                             <!-- Ends the Script tag -->
+    9.    </head>                                   <!-- Ends the Header tag -->
+    10.    <body>                            <!-- Starts the display section -->
+    11.        Web page content here
+    12.    </body>                                        <!-- Ends the body -->
+    13.</html>                                   <!-- ends the html document -->
 
 Each line has a unique effect in creating a web page and most of these lines contain "tags". HTML tags are made up of starting tags and ending tags. Each of these tags have a name wrapped inside of &lt; and &gt; signs. Ending tags have a slash in them to set them appart from starting tags. The text between the start and the ending tag is considered the "tag content".
 
@@ -21,20 +22,12 @@ For example, here is a title tag:
 
     <title>Text goes here</title>
 
-In the web page example at the top of the page, here is a break down of all the tags:
+From section above, the key take aways are:
 
-1. doctype: tells a web browser that the file is an HTML 5 document.
-2. html: starts the HTML page content
-3. head: Starts the "Header" section, a place for information the web page holds that is not viewable.
-4. title: The document title, shows in the Tab of the web browser or in the window.
-5. script: This is what we are looking for, it is the script tag for loading javascript!
-6. JavaScript Code!
-7. script end tag
-8. head end tag
-9. Body start tag: visual part of the document
-10. Page content is here, not much, just some words
-11. Body end tag
-12. HTML end tag
+* head tags contain information for the page and about the page, like title or scripts. Head tag does not display anything in the document window
+* script tag contains JavaScript, this is where we will be putting our program code.
+* body tag contains everything you see in the web page
+
 
 ## Thinks to know
 
