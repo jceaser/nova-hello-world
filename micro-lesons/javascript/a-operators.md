@@ -79,5 +79,5 @@ Binary operations can be with the values 0 and 1 or false and true. 0==false, 1=
 **NOTE**: Result is true only if left and right is different.
 
 ---
-* [previous](02-html-parts.md)
-* [next]()
+* [previous]()
+* [next](b-binary.md)

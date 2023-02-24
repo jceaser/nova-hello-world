@@ -12,9 +12,14 @@ JavaScript is a programing language built into all web browsers, and is the basi
 * [If](04-if.md)
 * [Loops](05-loops.md)
 * [Arrays](06-arrays.md)
+* [Maps] (07-maps.md)
+* [Functions](08-functions.md)
+* Page Interacting
+* Common built in Functions
 * Debugging
 * Appendix
     * [Operators](a-operators.md)
+    * [Numbers](b-binary.md)
 
 ----
 
@@ -39,7 +44,9 @@ To get started programing with java script you will need to create a basic web p
         </body>
     </html>
 
-You can download the file from [here][hello-html]. You will need to save the file after it loads by using "Save As…" from the File menu or pressing control-s on a Windows computer or Command-s on a Mac.
+You can download the file from [here][hello-html]. You will need to save the file after it loads by using "Save As…" from the File menu or pressing control-s on a Windows computer or Command-s on a Mac. You may need to put `.html` at the end to force the computer to see the file as a web page and not a "text" file.
+
+> **Side Note**: most computers let the user tag a file with a "file type". A file type helps both people and computers guess what may be in the file. You can set an extention by ending the file name with what is called an "extension". An extension is a word or set of letters that come after period. The meaning of extensions are commonly agreed on. For HTML file you end a file with `html`, for example our hello world file should be called: "hello-world.html". If the file was a JavaScript file, we would end a file with ".js".
 
 Next you will need a program called a "Text Editor". A text editor is like a word processor but has different features. A text editor will save a file with just the text part of a document. No color, not font information, nothing but text. Word uses a special format to save all this formating information, but a text editor does not, the letters you type are all that show up. All programing languages use text files to store code, and for this reason a Text Editor is needed.
 
