@@ -104,7 +104,7 @@ You can see some real world JSON if you go to a web service such as this one whi
     
 This might be the first time you have seen a web page not meant for humans. Web pages not meant for humans are frequently called "web services". Instad of returning to the browser HTML, the page returns just JSON. This is such a common task that browsers have built in support for taking a web page like this and setting the contents to a map variable for your use.
     
-A pretty advanced example showing how you would use the data is below. There are commands you have not seen yet such as "async" and "await" which tell javascript how to wait for requests that may take a long time. The most important part to note is the alert() line which navigates the data in the "json" variables set in the line above the alert(). First it goes to `output`, then `set` which you can see in the example above as being set to "9:28:10".
+A pretty advanced example showing how you would use the data is below. There are commands you have not seen yet such as "async" and "await" which tell javascript how to wait for requests that may take a long time. The "function" command will also be covered in the [next](08-functions.md) section. The most important part to note is the alert() line which navigates the data in the "json" variables set in the line above the alert(). First it goes to `output`, then `set` which you can see in the example above as being set to "9:28:10".
 
     async function setting() {
         var url = "https://thomascherry.name/cgi-bin/sun_server.cgi"

@@ -12,7 +12,7 @@ JavaScript is a programing language built into all web browsers, and is the basi
 * [If](04-if.md)
 * [Loops](05-loops.md)
 * [Arrays](06-arrays.md)
-* [Maps] (07-maps.md)
+* [Maps](07-maps.md)
 * [Functions](08-functions.md)
 * Page Interacting
 * Common built in Functions
